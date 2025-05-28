@@ -160,7 +160,7 @@ impl TextFormat {
             .font_class()
             .map(|s| s.decode(encoding).into_owned())
             .or_else(|| font.map(|font| WString::from_utf8(font.descriptor().name())))
-            .unwrap_or_else(|| WString::from_utf8("Times New Roman"));
+            .unwrap_or_else(|| WString::from_utf8("BIZ UDPMincho"));
         let align = et.layout().map(|l| l.align);
         let left_margin = et.layout().map(|l| l.left_margin.to_pixels());
         let right_margin = et.layout().map(|l| l.right_margin.to_pixels());

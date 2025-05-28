@@ -720,7 +720,7 @@ impl<'a, 'gc> LayoutContext<'a, 'gc> {
         // with devices that don't have those fonts installed. As a last resort
         // we fall back to using sans (like Flash).
         let default_font = match font_name {
-            "Times New Roman" => DefaultFont::Serif,
+            "BIZ UDPMincho" => DefaultFont::Serif,
             "Arial" => DefaultFont::Sans,
             "Consolas" => DefaultFont::Typewriter,
             "Courier" => DefaultFont::Typewriter,

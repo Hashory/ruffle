@@ -365,7 +365,7 @@ impl ActivePlayer {
             player_lock.set_default_font(
                 DefaultFont::Serif,
                 vec![
-                    "Times New Roman".into(),
+                    "BIZ UDPMincho".into(),
                     "Tinos".into(),
                     "Liberation Serif".into(),
                     "DejaVu Serif".into(),

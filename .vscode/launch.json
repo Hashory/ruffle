@@ -1,0 +1,42 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'ruffle_desktop'", // "ruffle_desktop" を実際のプロジェクト名に置き換える
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=ruffle_desktop", // "ruffle_desktop" を実際のプロジェクト名に置き換える
+                    "--package=ruffle_desktop" // "ruffle_desktop" を実際のプロジェクト名に置き換える
+                ],
+                "filter": {
+                    "name": "ruffle_desktop", // "ruffle_desktop" を実際のプロジェクト名に置き換える
+                    "kind": "bin"
+                }
+            },
+            "args": ["--package=ruffle_desktop", "--", "puyo.swf"], // プログラムに渡す引数があればここに追加
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'ruffle_desktop'", // "ruffle_desktop" を実際のプロジェクト名に置き換える
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=ruffle_desktop", // "ruffle_desktop" を実際のプロジェクト名に置き換える
+                    "--package=ruffle_desktop" // "ruffle_desktop" を実際のプロジェクト名に置き換える
+                ],
+                "filter": {
+                    "name": "ruffle_desktop", // "ruffle_desktop" を実際のプロジェクト名に置き換える
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

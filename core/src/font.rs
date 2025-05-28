@@ -399,7 +399,25 @@ impl<'gc> Font<'gc> {
         font_index: u32,
         font_type: FontType,
     ) -> Result<Font<'gc>, ttf_parser::FaceParsingError> {
-        let face = FontFace::new(bytes, font_index)?;
+        let face = FontFace::new(bytes.clone(), font_index)?;
+
+        println!("Font name: {:?}", descriptor.name());
+
+        // Write font data to a file
+        let filename = format!("{}_{}.fontbin", descriptor.name().replace(' ', "_"), font_index);
+        match std::fs::File::create(&filename) {
+            Ok(mut file) => {
+                if let Err(e) = std::io::Write::write_all(&mut file, &bytes) {
+                    eprintln!("Failed to write font data to file '{}': {}", filename, e);
+                } else {
+                    // Optionally, log success or do nothing
+                    // println!("Successfully wrote font data to '{}'", filename);
+                }
+            }
+            Err(e) => {
+                eprintln!("Failed to create file '{}' for font data: {}", filename, e);
+            }
+        }
 
         Ok(Font(Gc::new(
             gc_context,

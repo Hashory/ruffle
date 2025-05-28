@@ -436,10 +436,26 @@ impl<'a> Reader<'a> {
             TagCode::DefineEditText => {
                 Tag::DefineEditText(Box::new(tag_reader.read_define_edit_text()?))
             }
-            TagCode::DefineFont => Tag::DefineFont(Box::new(tag_reader.read_define_font_1()?)),
-            TagCode::DefineFont2 => Tag::DefineFont2(Box::new(tag_reader.read_define_font_2(2)?)),
-            TagCode::DefineFont3 => Tag::DefineFont2(Box::new(tag_reader.read_define_font_2(3)?)),
-            TagCode::DefineFont4 => Tag::DefineFont4(tag_reader.read_define_font_4()?),
+            TagCode::DefineFont => {
+                let font = tag_reader.read_define_font_1()?;
+                println!("DefineFont: {:?}", font);
+                Tag::DefineFont(Box::new(font))
+            }
+            TagCode::DefineFont2 => {
+                let font2 = tag_reader.read_define_font_2(2)?;
+                println!("DefineFont2: {:?}", font2);
+                Tag::DefineFont2(Box::new(font2))
+            }
+            TagCode::DefineFont3 => {
+                let font3 = tag_reader.read_define_font_2(3)?;
+                println!("DefineFont3: {:?}", font3);
+                Tag::DefineFont2(Box::new(font3))
+            }
+            TagCode::DefineFont4 => {
+                let font4 = tag_reader.read_define_font_4()?;
+                println!("DefineFont4: {:?}", font4);
+                Tag::DefineFont4(font4)
+            }
             TagCode::DefineFontAlignZones => tag_reader.read_define_font_align_zones()?,
             TagCode::DefineFontInfo => {
                 Tag::DefineFontInfo(Box::new(tag_reader.read_define_font_info(1)?))
